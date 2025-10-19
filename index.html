@@ -5,10 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/normalize.css">
     <link rel="stylesheet" href="styles/styles.css">
+    <link rel="icon" type="image/x-icon" href="./assets/logo-favicon.png">
+     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>    
     <title>Web terremotos</title>
 </head>
 <body>
-    
+    <header>
+        <h1>TERREMOTOS EN TIEMPO REAL</h1>
+        <h3>Monitoriza terremotos en tiempo real por todo el mundo</h3>
+        <nav id="nav">
+            <ul class="menu">
+                <li><a href="#mapa1">Mapa en tiempo real</a></li>
+                <li><a href="#mapa2">Filtros avanzados</a></li>
+            </ul>         
+        </nav>
+    </header>
+    <section id ="mapas">
+        <article class="contenedor-mapa">
+            <h2>Terremotos en tiempo real</h2>
+            <div id="mapa1">
+                <!--Aquí va el "mapa1" de Leaflet con las coordenadas de posiciones donde hay terremotos-->
+            </div>
+        </article>
+        <article class="contenedor-mapa">
+            <h2>Filtro por magnitud y fecha</h2>
+            <div id="filtros">
+                <label>Magnitud:
+                    <input type="number" id="magnitudFilter" min="0" max="7">
+                </label>
+                <label>Fecha inicio:
+                    <input type="date" id="startDate">
+                </label>
+                <label>Fecha fin:
+                    <input type="date" id="endDate">
+                </label>
+            
+            <button id="aplicarFiltro">Aplicar filtros</button>
+            </div>
+            <div id="mapa2">
+            <!--Aquí va el "mapa2" de Leaflet con las coordenadas de posiciones donde hay terremotos filtrando por magnitud y por fecha de inicio/fin-->
+            </div>
+        </article>
+    </section>
+    <footer>
+        <p>2025 Bootcamp FullStack </p>
+        <p>Terremotos en tiempo real</p>
+        <p>Cristina González Calvín</p>
+    </footer>
     <script src="./script.js"></script>
 </body>
 </html>

@@ -1,0 +1,257 @@
+/* ====================================================================== FUENTE Y VARIABLES ======================================================================*/
+
+/* Google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
+
+:root {
+    /* Fuentes */
+    --font-primary: 'Open Sans', sans-serif;
+    --font-weight-light: 300;
+    --font-weight-regular: 400;
+    --font-weight-semi-bold: 600;
+    --font-weight-bold: 700;
+    
+    /* Colores de alerta para terremotos - Escala 0-7 */
+    --color-alert-0: #4CAF50;        /* Verde - 0 */
+    --color-alert-1: #8BC34A;        /* Verde claro - 1 */
+    --color-alert-2: #CDDC39;        /* Lima - 2 */
+    --color-alert-3: #FFEB3B;        /* Amarillo - 3 */
+    --color-alert-4: #FFC107;        /* Ámbar - 4 */
+    --color-alert-5: #FF9800;        /* Naranja - 5 */
+    --color-alert-6: #FF5722;        /* Rojo - 6 */
+    --color-alert-7: #7B1FA2;        /* Morado - 7 */
+    
+    /* Paleta de colores inspirada en la web de la NASA */
+    --color-nasa-dark: #0B3D91;        /* Azul oscuro principal */
+    --color-nasa-medium: #1E6FE8;      /* Azul medio */
+    --color-nasa-light: #3498DB;       /* Azul claro */
+    --color-nasa-red: #E74C3C;         /* Rojo */
+    --color-nasa-white: #FFFFFF;       /* Blanco */
+    --color-nasa-gray-light: #F8F9FA;  /* Gris muy claro fondo */
+    --color-nasa-gray: #6C757D;        /* Gris texto secundario */
+    --color-nasa-dark-text: #212529;   /* Texto oscuro */
+    --color-nasa-black: #000000;       /* Negro */
+}
+
+/* ====================================================================== HTML Y BODY ======================================================================*/
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-regular);
+    color: var(--color-nasa-gray-dark);
+    background-color: var(--color-nasa-gray-light);
+    padding-top: 250px; /* AJUSTAR SEGÚN LA ALTURA DEL HEADER */
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ====================================================================== HEADER ======================================================================*/
+
+header {
+    background-image: url("../assets/header.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 200px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+
+}
+
+.menu {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    padding: 5px;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu li {
+    margin: 0;
+}
+
+.menu a {
+    color: var(--color-nasa-white);
+    text-decoration: none;
+    padding: 15px 25px;
+    border-radius: 5px;
+    transition: all 0.5s ease;
+    font-weight: var(--font-weight-semi-bold);
+    display: block;
+    text-align: center;
+    min-width: 140px;
+    font-size: 16px;
+    background-color: var(--color-nasa-red);
+}
+
+.menu a:hover {
+    background-color: var(--color-nasa-gray);
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px var(--color-nasa-black);
+    color: var(--color-nasa-black);
+}
+
+
+header h1 {
+    margin-top: 20px;
+    margin-bottom: 5px;
+    font-size: 45px;
+    color: var(--color-nasa-white);
+    text-align: center;
+    position: relative;
+}
+
+header h3 {
+    margin-top: 0;
+    margin-bottom: 30px;
+    color: var(--color-nasa-gray);
+    font-weight: var(--font-weight-regular);
+    font-size: 20px;
+    text-align: center;
+    position: relative;
+}
+
+
+/* ====================================================================== MAPAS ======================================================================*/
+
+#mapas {
+    padding: 20px;
+    margin-top: 0;
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+#mapas h2 {
+    color: var(--color-nasa-dark);
+    font-size: 30px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.contenedor-mapa {
+    height: 500px;
+    width: 800px;
+    margin-bottom: 20px;
+    background: var(--color-nasa-white);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px var(--color-nasa-dark-text);
+}
+
+#mapa1, #mapa2 {
+    height: 400px;
+    width: 800px;
+}
+
+#mapa2 {
+    height: 300px;
+    width: 800px;
+    margin-top: 15px;
+}
+
+
+#filtros {
+    background: var(--color-nasa-white);
+    padding: 15px;
+    border-radius: 10px;
+    margin: 20px auto;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+    border: 2px solid var(--color-nasa-gray-light);
+    max-width: 800px;
+}
+
+#filtros label {
+    font-weight: var(--font-weight-semi-bold);
+    color: var(--color-nasa-dark);
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#filtros input {
+    padding: 12px 15px;
+    border: 2px solid var(--color-nasa-gray);
+    border-radius: 10px;
+    font-size: 15px;
+    transition: all 0.5s ease;
+    background-color: var(--color-nasa-white);
+    color: var(--color-nasa-dark-text);
+}
+
+#filtros input:focus {
+    border-color: var(--color-nasa-medium);
+    box-shadow: 0 0 8px rgba(30, 111, 232, 0.3);
+    outline: none;
+    background-color: var(--color-nasa-gray-light);
+}
+
+#filtros input:hover {
+    border-color: var(--color-nasa-light);
+}
+
+#aplicarFiltro {
+    background-color: var(--color-nasa-medium);
+    color: var(--color-nasa-white);
+    border: none;
+    padding: 12px 15px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: var(--font-weight-semi-bold);
+    cursor: pointer;
+    transition: all 0.5s ease;
+    margin-top: 10px;
+}
+
+#aplicarFiltro:hover {
+    background-color: var(--color-nasa-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(11, 61, 145, 0.4);
+}
+
+
+/* ====================================================================== FOOTER ======================================================================*/
+footer {
+    background-color: var(--color-nasa-black);
+    color: var(--color-nasa-white);
+    padding: 15px 0;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+}
+
+footer p {
+    margin: 0 20px;
+    text-align: center;
+    font-size: 16px;
+    flex: 1;
+}
+
+
