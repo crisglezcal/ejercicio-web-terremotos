@@ -33,18 +33,28 @@
         <article class="contenedor-mapa">
             <h2>Filtro por magnitud y fecha</h2>
             <div id="filtros">
-                <label>Magnitud:
-                    <input type="number" id="magnitudFilter" min="0" max="7">
-                </label>
-                <label>Fecha inicio:
-                    <input type="date" id="startDate">
-                </label>
-                <label>Fecha fin:
-                    <input type="date" id="endDate">
-                </label>
-            
-            <button id="aplicarFiltro">Aplicar filtros</button>
-            </div>
+                <div id="filtros">
+                    <label>Rango de magnitud:
+                        <select id="magnitudFilter">
+                            <option value="">Todos</option>
+                            <option value="0-1">0 - 1</option>
+                            <option value="1-2">1 - 2</option>
+                            <option value="2-3">2 - 3</option>
+                            <option value="3-4">3 - 4</option>
+                            <option value="4-5">4 - 5</option>
+                            <option value="5-6">5 - 6</option>
+                            <option value="6-7">6 - 7</option>
+                            <option value="7+">7+</option>
+                        </select>
+                    </label>
+                    <label>Fecha inicio:
+                        <input type="date" id="startDate">
+                    </label>
+                    <label>Fecha fin:
+                        <input type="date" id="endDate">
+                    </label>
+                    <button id="aplicarFiltro">Aplicar filtros</button>
+            </div>  
             <div id="mapa2">
             <!--Aquí va el "mapa2" de Leaflet con las coordenadas de posiciones donde hay terremotos filtrando por magnitud y por fecha de inicio/fin-->
             </div>

@@ -42,9 +42,9 @@ html {
 body {
     font-family: var(--font-primary);
     font-weight: var(--font-weight-regular);
-    color: var(--color-nasa-gray-dark);
+    color: var(--color-nasa-dark-text);
     background-color: var(--color-nasa-gray-light);
-    padding-top: 250px; /* AJUSTAR SEGÚN LA ALTURA DEL HEADER */
+    padding-top: 250px;
     margin: 0;
     min-height: 100vh;
     display: flex;
@@ -67,7 +67,6 @@ header {
     top: 0;
     width: 100%;
     z-index: 1000;
-
 }
 
 .menu {
@@ -105,7 +104,6 @@ header {
     color: var(--color-nasa-black);
 }
 
-
 header h1 {
     margin-top: 20px;
     margin-bottom: 5px;
@@ -125,13 +123,11 @@ header h3 {
     position: relative;
 }
 
-
 /* ====================================================================== MAPAS ======================================================================*/
 
 #mapas {
     padding: 20px;
     margin-top: 0;
-    padding: 20px;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -148,7 +144,7 @@ header h3 {
 }
 
 .contenedor-mapa {
-    height: 500px;
+    height: 600px;
     width: 800px;
     margin-bottom: 20px;
     background: var(--color-nasa-white);
@@ -168,10 +164,11 @@ header h3 {
     margin-top: 15px;
 }
 
+/* ====================================================================== FORMULARIO FILTROS ======================================================================*/
 
 #filtros {
     background: var(--color-nasa-white);
-    padding: 15px;
+    padding: 25px;
     border-radius: 10px;
     margin: 20px auto;
     display: flex;
@@ -193,7 +190,7 @@ header h3 {
     gap: 8px;
 }
 
-#filtros input {
+#filtros input, #filtros select {
     padding: 12px 15px;
     border: 2px solid var(--color-nasa-gray);
     border-radius: 10px;
@@ -201,30 +198,38 @@ header h3 {
     transition: all 0.5s ease;
     background-color: var(--color-nasa-white);
     color: var(--color-nasa-dark-text);
+    font-family: var(--font-primary);
 }
 
-#filtros input:focus {
+#filtros input:focus, #filtros select:focus {
     border-color: var(--color-nasa-medium);
     box-shadow: 0 0 8px rgba(30, 111, 232, 0.3);
     outline: none;
     background-color: var(--color-nasa-gray-light);
 }
 
-#filtros input:hover {
+#filtros input:hover, #filtros select:hover {
     border-color: var(--color-nasa-light);
+}
+
+#magnitudFilter option {
+    background-color: var(--color-nasa-white);
+    color: var(--color-nasa-dark-text);
+    padding: 10px;
 }
 
 #aplicarFiltro {
     background-color: var(--color-nasa-medium);
     color: var(--color-nasa-white);
     border: none;
-    padding: 12px 15px;
+    padding: 14px 25px;
     border-radius: 10px;
     font-size: 15px;
     font-weight: var(--font-weight-semi-bold);
     cursor: pointer;
     transition: all 0.5s ease;
     margin-top: 10px;
+    font-family: var(--font-primary);
 }
 
 #aplicarFiltro:hover {
@@ -233,8 +238,12 @@ header h3 {
     box-shadow: 0 5px 15px rgba(11, 61, 145, 0.4);
 }
 
+#aplicarFiltro:active {
+    transform: translateY(0);
+}
 
 /* ====================================================================== FOOTER ======================================================================*/
+
 footer {
     background-color: var(--color-nasa-black);
     color: var(--color-nasa-white);
@@ -253,5 +262,4 @@ footer p {
     font-size: 16px;
     flex: 1;
 }
-
 
