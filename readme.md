@@ -1,78 +1,95 @@
-# 🎬 EJERCICIO  - Gestor de películas 
+# 🌍 EJERCICIO: Web de terremotos
 
-## 📋 Descripción del proyecto:
+## 📋 Descripción del proyecto
 
-Este proyecto es una landing page para un gestor de películas, desarrollada como ejercicio del bootcamp de Full Stack Web Developer.
+Este proyecto es una landing page que muestra datos de terremotos en tiempo real, interactuando con una API de terremotos. Integra la librería de mapas de Leaflet y sistema de usuarios con Firebase Authentication y gestión de favoritos con Firestore.
 
-### 🎯 Objetivos
+### 🔧 Funcionalidades principales:
 
-**Fase 1:**
-- ✅ Crea un formulario para añadir una nueva película: título, año, descripción, url foto y género.
-- ✅ Validar los campos del formulario (que el campo año tenga 4 cifras y se encuentre entre el año 1800 y la fecha actual)
-- ✅ Crear un filtro para mostrar las películas por género (los géneros serán: terror, acción, comedia y romántica)
-- ✅ Almacenar las películas en un array
-- ✅ Mostrar todas las películas en una tabla
-
-**Fase 2:**
-- ✅ Filtro en tiempo real por nombre: el usuario va escribiendo el nombre y se renderizan las películas que coinciden (input de texto + onchange)
-- ✅ Edición de películas existentes
-- ✅ Eliminación con confirmación
-
-
-## 🛠️ Tecnologías usadas
-
-- **HTML5** 📝
-- **CSS3** 🖌️
-- **JavaScript** 💻
+- **Consulta terremotos en tiempo real** desde la API pública de terremotos
+- Visualización geográfica en **Leaflet** con marcadores personalizados por magnitud
+- **Popups informativos** con detalles del terremoto
+- Segundo mapa con **filtros por magnitud y fecha**
+- **Firebase Authentication**: registro e inicio de sesión
+- **Sistema de favoritos vinculado a usuarios autenticados**
+- **Firestore**: almacenamiento de favoritos de cada usuario
+- **Local Storage** para mantener la sesión del usuario y otras preferencias
 
 ---
 
-## 🗂️ Secciones de la web
+## 🎯 Objetivos alcanzados
 
-### 🎪 Header
-- Título de la aplicación
+| Estado | Funcionalidad | Descripción |
+|--------|---------------|-------------|
+| ✅ | Petición a API de terremotos | Obtener y mostrar datos sísmicos en el mapa |
+| ✅ | Marcadores personalizados | Colores según magnitud |
+| ✅ | Popups con info del evento | Título, fecha, código, ubicación, magnitud y url para más información |
+| ✅ | Segundo mapa con filtros | Permite buscar terremotos por magnitud y fechas |
+| ✅ | Firebase Auth | Registro, login y logout de usuarios |
+| ✅ | Firebase Firestore | Guardar y leer favoritos de cada usuario |
+| ✅ | Sistema de favoritos | Añadir, quitar y mostrar terremotos favoritos desde el mapa |
+| ✅ | Filtro entre datos API/Favoritos | Dos botones: ver terremotos actuales o favoritos |
+| ✅ | Prevención de duplicados en BBDD | No permite añadir terremotos repetidos a favoritos |
+| ✅ | Local Storage | Gestión de datos de sesión y preferencias |
+| ✅ | Mobile first | Diseño prioritario para móviles|
+| ✅ | Responsive | Diseño adaptado|
+| ✅ | Código limpio | Uso de ES6, funciones modulares y buenas prácticas |
 
-### 🔍 Filtros de búsqueda
-- **Búsqueda por nombre** 🔎 - Filtrado en tiempo real: el usuario va escribiendo el nombre y se renderizan las películas que coinciden (input de texto + onchange)
-- **Filtro por género** 🎭 - Dropdown con categorías
+---
 
-### 🎥 Tabla de películas
-- Lista completa de películas organizadas
-- Información detallada: título, año, descripción, cartel y género
-- Botones de acción para cada película (editar y eliminar)
+## 🗂️ Estructura del proyecto (JS)
 
-### 🧾 Formulario de gestión
-- **Añadir nuevas películas** ➕
-- **Editar películas existentes** ✏️
-- **Validación de formulario con regex** 🔐
+- 📚 **Configuración de Firebase** – Conexión a Auth y Firestore  
+- 👩🏽 **Sistema de usuarios** – Registro, login y logout  
+- 📍 **Botones de login/logout** – Visibilidad dinámica según el estado del usuario  
+- ⚙️ **Funciones generales para mapas** – Carga y renderizado de mapas  
+- ✨ **Sistema de favoritos** – Añadir y eliminar favoritos desde el mapa  
+- 🗺️ **Inicialización de mapas** – Carga de datos API y favoritos  
+- 🟢 **Inicialización general** – Carga de eventos y listeners al cargar la app  
+- 🧔🏽‍♂️ **Gestor de autenticación** – Observador de cambios en sesión  
+- 💻 **Local Storage** – Persistencia de datos no críticos  
+
+---
+
+## 🛠️ Tecnologías utilizadas
+
+- **HTML5** 📝  
+- **CSS3** 🎨  
+- **JavaScript (ES6)** 💻  
+- **Firebase** (Auth + Firestore) 🔐📁  
+- **Librería de mapas Leaflet** 🗺️  
+- **API de Earthquakes** 🌐  
+- **Local Storage** 🗃️  
+
+---
+
+## 📑 Estructura de la web
+
+### 👩🏽 Header
+- Título principal y botones de login/logout dinámicos
+
+### 🗺️ Mapa 1: Terremotos en tiempo real
+- Visualización inicial con marcadores por magnitud
+- Popups con información y botón para añadir a favoritos
+
+### 🔍 Mapa 2: Búsqueda avanzada
+- Filtros por magnitud y rango de fechas
+- Marcadores con los resultados filtrados
+
+### ⭐ Favoritos
+- Visualización de terremotos guardados por el usuario autenticado
+- Botón para eliminar terremotos favoritos
+
+### 📋 Formulario de Login/Registro
+- Interfaz de autenticación con validaciones (REGEX)
 
 ### 👟 Footer
-- Información (bootcamp, título de la práctica y nombre)
+- Información del bootcamp, título del proyecto y autor
 
 ---
 
-## 🌐 URL del despliegue
+## 🌐 Despliegue del proyecto
 
 ### 🚀 GitHub Pages:
 
-🔗 https://crisglezcal.github.io/practica-peliculas/
-
----
-
-## ⚙️ Funcionalidades implementadas
-
-- **Añadir nuevas películas** ➕ 
-- **Visualizar toda la colección de películas** 👁️ 
-- **Editar películas existentes** ✏️ 
-- **Eliminar con confirmación** 🗑️ 
-- **Filtro por nombre** 🔍 
-- **Filtro por género** 🎭 
-- **Validación con regex** 🔐
-
-## ➡️ Siguientes pasos
-
-- **Reestructurar CSS con enfoque mobile-first** 📱 
-
-
-
-
+🔗 

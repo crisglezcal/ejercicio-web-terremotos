@@ -1,14 +1,14 @@
 /*
 ESTRUCTURA:
-📚 13 - CONFIGURACIÓN DE FIREBASE - CONEXIÓN CON LA BASE DE DATOS
-👩🏽 37 - SISTEMA DE USUARIOS - REGISTRO Y LOGIN
-📍 146 - GESTIÓN DE BOTONES DE LOGIN/LOGOUT
-⚙️ 169 - FUNCIONES GENERALES PARA LOS MAPAS
-✨ 283 - SISTEMA DE FAVORITOS
-🗺️ 587 - INICIALIZACIÓN DE MAPAS
-🟢 753 - INICIALIZACIÓN GENERAL DE LA PÁGINA
-🧔🏽‍♂️ 921 - DETECTOR DE CAMBIOS EN LA AUTENTICACIÓN
-💻 932 - LOCAL STORAGE (PENDIENTE)
+📚 CONFIGURACIÓN DE FIREBASE - CONEXIÓN CON LA BASE DE DATOS
+👩🏽 SISTEMA DE USUARIOS - REGISTRO Y LOGIN
+📍 GESTIÓN DE BOTONES DE LOGIN/LOGOUT
+⚙️ FUNCIONES GENERALES PARA LOS MAPAS
+✨ SISTEMA DE FAVORITOS
+🗺️ INICIALIZACIÓN DE MAPAS
+🟢 INICIALIZACIÓN GENERAL DE LA PÁGINA
+🧔🏽‍♂️ DETECTOR DE CAMBIOS EN LA AUTENTICACIÓN
+💻 LOCAL STORAGE
 */
 
 // ======================================================================================================================================================================
@@ -230,13 +230,19 @@ async function getEarthquakes() {
 function createPopupContent(earthquake, isFavoriteView = false) {
     // Extraer información del terremoto
     const { properties, geometry } = earthquake;
-    const { title, time, place, code, mag, url } = properties;
+    const { title, time, place, code, mag, url, id } = properties;
     
     let buttonHTML = '';  // Aquí guardaremos el botón o mensaje
     const earthquakeId = `${time}-${code}`;  // ID único del terremoto
     const user = firebase.auth().currentUser;  // Verificar si hay usuario logeado
     
     console.log("Creando popup - Usuario:", user); 
+    console.log("URL del terremoto:", url);
+    console.log("ID del terremoto:", id);
+    console.log("Code del terremoto:", code);
+    
+    // CORREGIR: Usar la URL proporcionada por la API o construirla correctamente
+    const eventUrl = url || `https://earthquake.usgs.gov/earthquakes/eventpage/${id || code}`;
     
     if (!isFavoriteView) { // Si NO estamos en la vista de favoritos:
         if (user) { // USUARIO LOGEADO: mostrar botón "Añadir a favoritos"
@@ -245,8 +251,10 @@ function createPopupContent(earthquake, isFavoriteView = false) {
                     '${time}',           
                     '${place.replace(/'/g, "\\'")}',  
                     '${code}',           
-                    ${mag}
-                    ${url}               
+                    ${mag},
+                    '${eventUrl}',
+                    ${geometry.coordinates[1]},
+                    ${geometry.coordinates[0]}
                 )">
                     ★ Añadir a favoritos
                 </button>
@@ -266,7 +274,7 @@ function createPopupContent(earthquake, isFavoriteView = false) {
         `;
     }
     
-    // Devolver el HTML completo del popup
+    // Devolver el HTML completo del popup CON EL ENLACE CORREGIDO
     return `
     <div class="earthquake-popup">
         <h3>${title}</h3>
@@ -274,11 +282,10 @@ function createPopupContent(earthquake, isFavoriteView = false) {
         <p><strong>Ubicación:</strong> ${place}</p>
         <p><strong>Código:</strong> ${code}</p>
         <p><strong>Magnitud:</strong> ${mag}</p>
-        <a href="https://earthquake.usgs.gov/earthquakes/eventpage/${code}" target="_blank">Ver detalles completos</a>
-        </p>
+        <a href="${eventUrl}" target="_blank">Ver detalles completos</a>
         ${buttonHTML}  <!-- Aquí va el botón o mensaje -->
     </div>
-`
+`;
 }
 
 // ======================================================================================================================================================================
@@ -286,7 +293,7 @@ function createPopupContent(earthquake, isFavoriteView = false) {
 // ======================================================================================================================================================================
 
 // 1. Función añadir terremoto a favoritos
-function addToFavorites(time, place, code, magnitude) {
+function addToFavorites(time, place, code, magnitude, url, lat, lng) {
     const user = firebase.auth().currentUser;  // Verificar usuario logeado
     
     // Si no hay usuario logeado, mostrar SweetAlert de error y salir
@@ -302,7 +309,7 @@ function addToFavorites(time, place, code, magnitude) {
     // Crear ID único para el terremoto
     const earthquakeId = `${time}-${code}`;
 
-    // Preparar datos del terremoto para guardar
+    // Preparar datos del terremoto para guardar (INCLUYENDO COORDENADAS)
     const pinData = {
         id: earthquakeId,
         title: `Terremoto ${magnitude} - ${place}`,
@@ -310,7 +317,8 @@ function addToFavorites(time, place, code, magnitude) {
         mag: magnitude,
         time: time,
         code: code,
-        url: url
+        url: url || `https://earthquake.usgs.gov/earthquakes/eventpage/${code}`,
+        coordinates: [lat, lng]  // ¡GUARDAR LAS COORDENADAS!
     };
 
     // Referencia al documento del usuario en la base de datos
@@ -502,13 +510,18 @@ function showFavorites() {
             });
             
             favorites.forEach(favorite => { // Pintar cada favorito en el mapa 1
-                const coordinates = favorite.coordinates || [20, 0]; // Usar coordenadas por defecto
+                // USAR LAS COORDENADAS GUARDADAS O COORDENADAS POR DEFECTO
+                const coordinates = favorite.coordinates && favorite.coordinates.length === 2 
+                    ? [favorite.coordinates[0], favorite.coordinates[1]] 
+                    : [20, 0];
+                
+                console.log(`Mostrando favorito: ${favorite.title} en coordenadas:`, coordinates);
                 
                 const marker = L.marker(coordinates, { // Crear marcador en el mapa
                     icon: createCustomIcon(favorite.mag) // Icono con color según magnitud
                 }).addTo(mapa1);
 
-                // Crear contenido del popup para favoritos
+                // Crear contenido del popup para favoritos CON ENLACE CORREGIDO
                 const popupContent = `
                     <div class="earthquake-popup">
                         <h3>${favorite.title}</h3>
@@ -516,7 +529,7 @@ function showFavorites() {
                         <p><strong>Ubicación:</strong> ${favorite.place}</p>
                         <p><strong>Código:</strong> ${favorite.code}</p>
                         <p><strong>Magnitud:</strong> ${favorite.mag}</p>
-                        <a href="https://earthquake.usgs.gov/earthquakes/eventpage/${code}" target="_blank">Ver detalles completos</a>
+                        <a href="${favorite.url}" target="_blank">Ver detalles completos</a>
                         <button class="remove-favorite-btn" onclick="removeFromFavorites('${favorite.id}')">
                             ✕ Eliminar de favoritos
                         </button>
@@ -706,7 +719,7 @@ function initializeMaps() {
                     return;
                 }
 
-                data.forEach(earthquake => { // Para cada terremoto filtrado, crear marcador
+                data.forEach(earthquake => { // Para cada terremoto filtrado, crear marcadores
                     const coordinates = [
                         earthquake.geometry.coordinates[1],
                         earthquake.geometry.coordinates[0]
@@ -764,11 +777,14 @@ document.addEventListener("DOMContentLoaded", function() {
         initializeMaps();
     }
     
-    // -----------> FORMULARIOS
+// -----------> FORMULARIOS
     
     // 1. Formulario 1: Registro de nuevo usuario
     const form1 = document.getElementById("form1");
     if (form1) {
+        // Desactivar validación nativa del navegador para que funcione regex y salte un Sweet Alert
+        form1.setAttribute('novalidate', 'true');
+        
         form1.addEventListener("submit", function (event) {
             event.preventDefault();  // Evitar que el formulario se envíe normalmente
             
@@ -779,10 +795,6 @@ document.addEventListener("DOMContentLoaded", function() {
             
             // VALIDACIÓN 1: Verificar que el email tenga formato válido usando REGEX
             const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-            // Explicación del REGEX para email:
-            // ^[a-zA-Z0-9._%+-]+  → Debe empezar con letras, números o caracteres especiales comunes en emails
-            // @[a-zA-Z0-9.-]+     → Debe contener un @ seguido del dominio
-            // \.[a-zA-Z]{2,}$     → Debe terminar con un punto y al menos 2 letras (.com, .es, etc.)
             
             if (!emailRegex.test(email)) {
                 Swal.fire({
@@ -815,12 +827,6 @@ document.addEventListener("DOMContentLoaded", function() {
             
             // VALIDACIÓN 4: Verificar fortaleza de la contraseña usando REGEX
             const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/;
-            // Explicación del REGEX para contraseña fuerte:
-            // (?=.*[a-z])        → Debe contener al menos una letra minúscula
-            // (?=.*[A-Z])        → Debe contener al menos una letra mayúscula  
-            // (?=.*\d)           → Debe contener al menos un número
-            // (?=.*[@$!%*?&])    → Debe contener al menos un caracter especial (@, $, !, %, *, ?, &)
-            // [A-Za-z\d@$!%*?&]  → Solo permite estos caracteres (evita otros símbolos)
             
             if (!passwordRegex.test(pass)) {
                 Swal.fire({
@@ -843,6 +849,9 @@ document.addEventListener("DOMContentLoaded", function() {
     // 2. Formulario 2: Inicio de sesión
     const form2 = document.getElementById("form2");
     if (form2) {
+        // Desactivar validación nativa del navegador
+        form2.setAttribute('novalidate', 'true');
+        
         form2.addEventListener("submit", function(event) {
             event.preventDefault();  // Evitar envío normal del formulario
             
@@ -852,7 +861,6 @@ document.addEventListener("DOMContentLoaded", function() {
             
             // VALIDACIÓN: Verificar que el email tenga formato válido usando REGEX
             const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-            // Mismo REGEX que en el formulario de registro para consistencia
             
             if (!emailRegex.test(email)) {
                 Swal.fire({
@@ -927,9 +935,154 @@ document.addEventListener("DOMContentLoaded", function() {
 firebase.auth().onAuthStateChanged(function(user) {
     console.log("Estado de autenticación cambiado:", user);
     updateAuthButtons();
+    
+    // ACTUALIZAR LOS POPUPS CUANDO EL USUARIO SE LOGUEA/DESLOGUEA
+    if (mapa1) {
+        // Recargar los terremotos para actualizar los botones en los popups
+        showAllEarthquakes();
+    }
 });
 
 
 // ======================================================================================================================================================================
 // 💻 LOCAL STORAGE
 // ======================================================================================================================================================================
+
+// 1. Función para limpiar el Local Storage
+function clearLocalStorage() {
+    localStorage.removeItem("formData");
+    console.log("Local Storage limpiado correctamente");
+}
+
+// 2. Función para guardar datos del formulario en Local Storage
+function saveFormData(formId) {
+    const form = document.getElementById(formId);
+    if (!form) return;
+    
+    const formData = new FormData(form);
+    const data = {};
+    
+    for (let [key, value] of formData.entries()) {
+        data[key] = value;
+    }
+    
+    localStorage.setItem("formData", JSON.stringify(data));
+    console.log("Datos del formulario guardados en Local Storage:", data);
+}
+
+// 3. Función para cargar datos del formulario desde Local Storage
+function loadFormData(formId) {
+    const form = document.getElementById(formId);
+    if (!form) return;
+    
+    const savedData = localStorage.getItem("formData");
+    if (savedData) {
+        const data = JSON.parse(savedData);
+        
+        for (let [key, value] of Object.entries(data)) {
+            const input = form.elements[key];
+            if (input) {
+                input.value = value;
+            }
+        }
+        console.log("Datos del formulario cargados desde Local Storage:", data);
+    }
+}
+
+// 4. Configurar el botón de limpiar formulario
+function setupClearButton() {
+    // Configurar para formulario 1 (registro)
+    const form1 = document.getElementById("form1");
+    if (form1 && !document.getElementById("cleanAll1")) {
+        const clearButton1 = document.createElement("button");
+        clearButton1.type = "button";
+        clearButton1.id = "cleanAll1";
+        clearButton1.textContent = "Borrar todo";
+        clearButton1.className = "clear-button";
+        
+        const submitButton1 = form1.querySelector('input[type="submit"]');
+        if (submitButton1) {
+            submitButton1.parentNode.appendChild(clearButton1);
+            
+            clearButton1.addEventListener("click", () => {
+                form1.reset();
+                clearLocalStorage();
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Formulario limpiado',
+                    text: 'Todos los datos han sido borrados correctamente',
+                    timer: 1500,
+                    showConfirmButton: false
+                });
+            });
+        }
+    }
+    
+    // Configurar para formulario 2 (login)
+    const form2 = document.getElementById("form2");
+    if (form2 && !document.getElementById("cleanAll2")) {
+        const clearButton2 = document.createElement("button");
+        clearButton2.type = "button";
+        clearButton2.id = "cleanAll2";
+        clearButton2.textContent = "Borrar todo";
+        clearButton2.className = "clear-button";
+        
+        const submitButton2 = form2.querySelector('input[type="submit"]');
+        if (submitButton2) {
+            submitButton2.parentNode.appendChild(clearButton2);
+            
+            clearButton2.addEventListener("click", () => {
+                form2.reset();
+                clearLocalStorage();
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Formulario limpiado',
+                    text: 'Todos los datos han sido borrados correctamente',
+                    timer: 1500,
+                    showConfirmButton: false
+                });
+            });
+        }
+    }
+}
+
+// 5. Event listeners para guardar datos automáticamente mientras se escribe
+document.addEventListener("DOMContentLoaded", function() {
+    // Configurar botones de limpiar
+    setupClearButton();
+    
+    // Guardar datos automáticamente mientras se escribe en formulario 1
+    const form1 = document.getElementById("form1");
+    if (form1) {
+        form1.addEventListener("input", function() {
+            saveFormData("form1");
+        });
+        
+        // Cargar datos guardados al cargar la página
+        loadFormData("form1");
+    }
+    
+    // Guardar datos automáticamente mientras se escribe en formulario 2
+    const form2 = document.getElementById("form2");
+    if (form2) {
+        form2.addEventListener("input", function() {
+            saveFormData("form2");
+        });
+        
+        // Cargar datos guardados al cargar la página
+        loadFormData("form2");
+    }
+});
+
+// 6. Función para limpiar todo el almacenamiento local (puede ser llamada desde la consola o desde un botón administrativo)
+function clearAllLocalStorage() {
+    localStorage.clear();
+    console.log("Todo el Local Storage ha sido limpiado");
+    Swal.fire({
+        icon: 'success',
+        title: 'Almacenamiento limpiado',
+        text: 'Todos los datos locales han sido borrados',
+        timer: 2000,
+        showConfirmButton: false
+    });
+}
