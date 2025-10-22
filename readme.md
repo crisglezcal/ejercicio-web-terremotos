@@ -92,4 +92,4 @@ Este proyecto es una landing page que muestra datos de terremotos en tiempo real
 
 ### 🚀 GitHub Pages:
 
-🔗 
+🔗 https://crisglezcal.github.io/ejercicio-web-terremotos/
