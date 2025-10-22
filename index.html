@@ -7,9 +7,11 @@
     <link rel="stylesheet" href="styles/styles.css">
     <link rel="icon" type="image/x-icon" href="./assets/logo-favicon.png">
      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-     crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>    
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet@latest/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-providers@latest/leaflet-providers.js"></script>
     <title>Web terremotos</title>
 </head>
 <body>
@@ -18,16 +20,58 @@
         <h3>Monitoriza terremotos en tiempo real por todo el mundo</h3>
         <nav id="nav">
             <ul class="menu">
-                <li><a href="#mapa1">Mapa en tiempo real</a></li>
-                <li><a href="#mapa2">Filtros avanzados</a></li>
+                <li><a href="./formularios.html" id="login">Log in</a></li>
+                <li><button id="sign-out">Cerrar sesión</button></li>
             </ul>         
         </nav>
+        
     </header>
+    <section id = "leyenda">
+        <h2>Niveles de alerta sísmica</h2>
+        <ul class="lista-niveles">
+            <li class="nivel-0">
+                <span class="color-indicador"></span>
+                <span>Alerta nivel 0</span>
+            </li>
+            <li class="nivel-1">
+                <span class="color-indicador"></span>
+                <span>Alerta nivel 1</span>
+            </li>
+            <li class="nivel-2">
+                <span class="color-indicador"></span>
+                <span>Alerta nivel 2</span>
+            </li>
+            <li class="nivel-3">
+                <span class="color-indicador"></span>
+                <span>Alerta nivel 3</span>
+            </li>
+            <li class="nivel-4">
+                <span class="color-indicador"></span>
+                <span>Alerta nivel 4</span>
+            </li>
+            <li class="nivel-5">
+                <span class="color-indicador"></span>
+                <span>Alerta nivel 5</span>
+            </li>
+            <li class="nivel-6">
+                <span class="color-indicador"></span>
+                <span>Alerta nivel 6</span>
+            </li>
+            <li class="nivel-7">
+                <span class="color-indicador"></span>
+                <span>Alerta nivel 7</span>
+            </li>
+        </ul>
+    </section>
     <section id ="mapas">
         <article class="contenedor-mapa">
             <h2>Terremotos en tiempo real</h2>
             <div id="mapa1">
                 <!--Aquí va el "mapa1" de Leaflet con las coordenadas de posiciones donde hay terremotos-->
+            </div>
+            <div id="earthquakes-buttons">
+                <button id="show-all-earthquakes">Ver todos los terremotos</button>
+                <button id="show-favorites">Ver mis favoritos</button>
             </div>
         </article>
         <article class="contenedor-mapa">
@@ -35,7 +79,7 @@
             <div id="filtros">
                 <div id="filtros">
                     <label>Rango de magnitud:
-                        <select id="magnitudFilter">
+                        <select id="filtro-magnitud">
                             <option value="">Todos</option>
                             <option value="0-1">0 - 1</option>
                             <option value="1-2">1 - 2</option>
@@ -65,6 +109,15 @@
         <p>Terremotos en tiempo real</p>
         <p>Cristina González Calvín</p>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js"></script>
+
     <script src="./script.js"></script>
 </body>
 </html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/normalize.css">
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="icon" type="image/x-icon" href="./assets/logo-favicon.png">
+    <title>Web terremotos</title>
+</head>
+<body>
+    <header>
+        <h1>TERREMOTOS EN TIEMPO REAL</h1>
+        <h3>Monitoriza terremotos en tiempo real por todo el mundo</h3>
+        <nav id="nav">
+            <ul class="menu">
+                <li><a href="./index.html">Mapas y filtrado en tiempo real</a></li>
+            </ul>         
+        </nav>
+    </header>
+    <section id="formularios">
+        <article id="sign-up">
+            <h2>Registro</h2>
+            <form id="form1">
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email" placeholder="Introduce email..." required><br>
+                <label for="pass">Password:</label><br>
+                <input type="password" id="pass" name="pass" placeholder="Mínimo 6 caracteres..." required><br>
+                <label for="pass2">Confirmar Password:</label><br>
+                <input type="password" id="pass2" name="pass2" placeholder="Repite password..." required><br>
+                <input type="submit" value="Registrarse">
+            </form>
+            <button id="borrar">Borrar todo</button>
+        </article>
+        <article id="log-in">
+            <h2>Inicio de sesión</h2>
+            <form id="form2">
+                <label for="email2">Email:</label><br>
+                <input type="email" id="email2" name="email2" placeholder="Introduce email..." required><br>
+                <label for="pass3">Password:</label><br>
+                <input type="password" id="pass3" name="pass3" placeholder="Introduce password..." required><br>
+                <input type="submit" value="Iniciar Sesión">
+            </form>
+            <button id="borrar2">Borrar todo</button>
+        </article>
+        <div id="message"></div>
+    </section>
+    <footer>
+        <p>2025 Bootcamp FullStack </p>
+        <p>Terremotos en tiempo real</p>
+        <p>Cristina González Calvín</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js"></script>
+
+    <script src="./script.js"></script>
+</body>
+</html>

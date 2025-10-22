@@ -21,16 +21,16 @@
     --color-alert-6: #FF5722;        /* Rojo - 6 */
     --color-alert-7: #7B1FA2;        /* Morado - 7 */
     
-    /* Paleta de colores inspirada en la web de la NASA */
-    --color-nasa-dark: #0B3D91;        /* Azul oscuro principal */
-    --color-nasa-medium: #1E6FE8;      /* Azul medio */
-    --color-nasa-light: #3498DB;       /* Azul claro */
-    --color-nasa-red: #E74C3C;         /* Rojo */
-    --color-nasa-white: #FFFFFF;       /* Blanco */
-    --color-nasa-gray-light: #F8F9FA;  /* Gris muy claro fondo */
-    --color-nasa-gray: #6C757D;        /* Gris texto secundario */
-    --color-nasa-dark-text: #212529;   /* Texto oscuro */
-    --color-nasa-black: #000000;       /* Negro */
+    /* Paleta de colores */
+    --color-nasa-dark: #0B3D91;        
+    --color-nasa-medium: #1E6FE8;      
+    --color-nasa-light: #3498DB;       
+    --color-nasa-red: #E74C3C;         
+    --color-nasa-white: #FFFFFF;       
+    --color-nasa-gray-light: #F8F9FA;  
+    --color-nasa-gray: #6C757D;        
+    --color-nasa-dark-text: #212529;   
+    --color-nasa-black: #000000;       
 }
 
 /* ====================================================================== HTML Y BODY ======================================================================*/
@@ -70,6 +70,7 @@ header {
 }
 
 .menu {
+    padding-top: 200px;
     display: flex;
     list-style: none;
     gap: 20px;
@@ -122,6 +123,237 @@ header h3 {
     text-align: center;
     position: relative;
 }
+
+/* ====================================================================== BOTONES LOG IN/SIGN OUT ======================================================================*/
+
+#sign-out {
+    color: var(--color-nasa-white);
+    text-decoration: none;
+    padding: 15px 25px;
+    border-radius: 5px;
+    transition: all 0.5s ease;
+    font-weight: var(--font-weight-semi-bold);
+    display: block;
+    text-align: center;
+    min-width: 140px;
+    font-size: 16px;
+    background-color: var(--color-nasa-red);
+}
+
+#sign-out:hover {
+    background-color: var(--color-nasa-gray);
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px var(--color-nasa-black);
+    color: var(--color-nasa-black);
+}
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
+}
+
+/* ====================================================================== FORMULARIOS LOGIN Y SIGNIN ======================================================================*/
+
+#formularios {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 30px 20px;
+    margin: 20px auto;
+    max-width: 1000px;
+    flex-wrap: wrap;
+}
+
+/* CORREGIDO: Cambié #sign-in por #sign-up */
+#log-in, #sign-up {
+    background: var(--color-nasa-white);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px var(--color-nasa-black);
+    flex: 1;
+    min-width: 300px;
+    max-width: 400px;
+    border: 2px solid var(--color-nasa-gray-light);
+}
+
+#formularios h2 {
+    color: var(--color-nasa-dark);
+    text-align: center;
+    margin-bottom: 25px;
+    font-weight: var(--font-weight-bold);
+    font-size: 24px;
+    border-bottom: 2px solid var(--color-nasa-dark);
+    padding-bottom: 10px;
+}
+
+#formularios form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#formularios label {
+    font-weight: var(--font-weight-semi-bold);
+    color: var(--color-nasa-dark);
+    font-size: 16px;
+    margin-bottom: -15px;
+}
+
+/* CORREGIDO: Eliminé los tipos de input que no existen */
+#formularios input[type="email"],
+#formularios input[type="password"] {
+    padding: 14px;
+    border: 2px solid var(--color-nasa-gray);
+    border-radius: 8px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    background-color: var(--color-nasa-white);
+    color: var(--color-nasa-dark-text);
+    font-family: var(--font-primary);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#formularios input[type="email"]:focus,
+#formularios input[type="password"]:focus {
+    border-color: var(--color-nasa-medium);
+    box-shadow: 0 0 8px var(--color-nasa-dark);
+    outline: none;
+    background-color: var(--color-nasa-gray-light);
+    transform: translateY(-2px);
+}
+
+#formularios input[type="email"]:hover,
+#formularios input[type="password"]:hover {
+    border-color: var(--color-nasa-light);
+}
+
+#formularios input[type="submit"],
+#borrar,
+#borrar2 {
+    background-color: var(--color-nasa-medium);
+    color: var(--color-nasa-white);
+    border: none;
+    padding: 15px 25px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: var(--font-weight-semi-bold);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    font-family: var(--font-primary);
+    width: 100%;
+}
+
+#formularios input[type="submit"]:hover,
+#borrar:hover,
+#borrar2:hover {
+    background-color: var(--color-nasa-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px var(--color-nasa-dark);
+}
+
+#formularios input[type="submit"]:focus,
+#borrar:focus,
+#borrar2:focus {
+    outline-offset: 2px;
+    background-color: var(--color-nasa-dark);
+}
+
+#formularios input[type="submit"]:active,
+#borrar:active,
+#borrar2:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px var(--color-nasa-dark);
+}
+
+#borrar, #borrar2 {
+    background-color: var(--color-nasa-red);
+    margin-top: 15px;
+}
+
+#borrar:hover, #borrar2:hover {
+    background-color: var(--color-nasa-red);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px var(--color-nasa-red);
+}
+
+
+/* ====================================================================== LEYENDA ======================================================================*/
+
+#leyenda {
+    margin: 15px auto;
+    max-width: 500px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px var(--color-nasa-dark-text);
+}
+
+#leyenda h2 {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: var(--color-nasa-dark-text);
+}
+
+.lista-niveles {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.lista-niveles li {
+    display: flex;
+    align-items: center;
+    padding: 8px 10px;
+    margin-bottom: 6px;
+    border-radius: 6px;
+    background-color: var(--color-nasa-white);
+}
+
+.color-indicador {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    margin-right: 12px;
+}
+
+.nivel-0 .color-indicador { 
+    background-color: var(--color-alert-0); 
+}
+
+.nivel-1 .color-indicador { 
+    background-color: var(--color-alert-1); 
+}
+
+.nivel-2 .color-indicador { 
+    background-color: var(--color-alert-2); 
+}
+
+.nivel-3 .color-indicador { 
+    background-color: var(--color-alert-3); 
+}
+
+.nivel-4 .color-indicador { 
+    background-color: var(--color-alert-4); 
+}
+
+.nivel-5 .color-indicador { 
+    background-color: var(--color-alert-5); 
+}
+
+.nivel-6 .color-indicador { 
+    background-color: var(--color-alert-6); 
+}
+
+.nivel-7 .color-indicador { 
+    background-color: var(--color-alert-7); 
+}
+
 
 /* ====================================================================== MAPAS ======================================================================*/
 
@@ -212,7 +444,7 @@ header h3 {
     border-color: var(--color-nasa-light);
 }
 
-#magnitudFilter option {
+#filtro-magnitud option {
     background-color: var(--color-nasa-white);
     color: var(--color-nasa-dark-text);
     padding: 10px;
