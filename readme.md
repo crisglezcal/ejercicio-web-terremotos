@@ -36,6 +36,7 @@ Este proyecto es una dashboard interactiva de actividad sísmica que muestra dat
 | ✅ | Mobile first | Diseño prioritario para móviles|
 | ✅ | Responsive | Diseño adaptado|
 | ✅ | Código limpio | Uso de ES6, funciones modulares y buenas prácticas |
+| ❌ | Animación | Incluir una animación mientras esperamos la carga del contenido |
 
 ---
 
