@@ -2,7 +2,9 @@
 
 ## 📋 Descripción del proyecto
 
-Este proyecto es una landing page que muestra datos de terremotos en tiempo real, interactuando con una API de terremotos. Integra la librería de mapas de Leaflet y sistema de usuarios con Firebase Authentication y gestión de favoritos con Firestore.
+![Diseño responsive](./assets/responsive.png.png)
+
+Este proyecto es una dashboard interactiva de actividad sísmica que muestra datos de terremotos en tiempo real, interactuando con una API de terremotos. Integra la librería de mapas de Leaflet y sistema de usuarios con Firebase Authentication y gestión de favoritos con Firestore.
 
 ### 🔧 Funcionalidades principales:
 
@@ -93,3 +95,10 @@ Este proyecto es una landing page que muestra datos de terremotos en tiempo real
 ### 🚀 GitHub Pages:
 
 🔗 https://crisglezcal.github.io/ejercicio-web-terremotos/
+
+---
+
+## 🪛 Mejoras a implementar
+
+- 🎨 **Limpiar la hoja de script.js de estilos (que estén todos en el CSS)**
+- 😻 **Incluir una animación mientras esperamos la carga del contenido** 

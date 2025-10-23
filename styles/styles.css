@@ -3,6 +3,7 @@
 /* Google fonts */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
 
+
 :root {
     /* Fuentes */
     --font-primary: 'Open Sans', sans-serif;
@@ -10,7 +11,7 @@
     --font-weight-regular: 400;
     --font-weight-semi-bold: 600;
     --font-weight-bold: 700;
-    
+   
     /* Colores de alerta para terremotos - Escala 0-7 */
     --color-alert-0: #4CAF50;        /* Verde - 0 */
     --color-alert-1: #8BC34A;        /* Verde claro - 1 */
@@ -20,45 +21,57 @@
     --color-alert-5: #FF9800;        /* Naranja - 5 */
     --color-alert-6: #FF5722;        /* Rojo - 6 */
     --color-alert-7: #7B1FA2;        /* Morado - 7 */
-    
+   
     /* Paleta de colores */
     --color-nasa-dark: #0B3D91;        
     --color-nasa-medium: #1E6FE8;      
-    --color-nasa-light: #3498DB;       
-    --color-nasa-red: #E74C3C;         
-    --color-nasa-white: #FFFFFF;       
+    --color-nasa-light: #3498DB;      
+    --color-nasa-red: #E74C3C;        
+    --color-nasa-white: #FFFFFF;      
     --color-nasa-gray-light: #F8F9FA;  
     --color-nasa-gray: #6C757D;        
-    --color-nasa-dark-text: #212529;   
-    --color-nasa-black: #000000;       
+    --color-nasa-dark-text: #212529;  
+    --color-nasa-black: #000000;      
 }
 
-/* ====================================================================== HTML Y BODY ======================================================================*/
+
+/* ====================================================================== BASE ======================================================================*/
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 
 html {
     scroll-behavior: smooth;
 }
+
 
 body {
     font-family: var(--font-primary);
     font-weight: var(--font-weight-regular);
     color: var(--color-nasa-dark-text);
     background-color: var(--color-nasa-gray-light);
-    padding-top: 180px;
+    padding-top: 140px; /* MOBILE FIRST - Ajustado para header fijo */
     margin: 0;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
+
 /* ====================================================================== HEADER ======================================================================*/
+
 
 header {
     background-image: url("../assets/header.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 150px;
+    height: 120px; /* MOBILE FIRST - Reducido para móvil */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -67,37 +80,41 @@ header {
     top: 0;
     width: 100%;
     z-index: 1000;
-    padding: 10px 20px;
+    padding: 8px 12px;
 }
+
 
 .menu {
     display: flex;
     list-style: none;
-    gap: 10px;
-    padding: 5px;
+    gap: 6px;
+    padding: 4px;
     margin: 0;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
 }
 
+
 .menu li {
     margin: 0;
 }
 
+
 .menu a {
     color: var(--color-nasa-white);
     text-decoration: none;
-    padding: 12px 20px;
+    padding: 8px 12px;
     border-radius: 5px;
     transition: all 0.5s ease;
     font-weight: var(--font-weight-semi-bold);
     display: block;
     text-align: center;
-    min-width: 120px;
-    font-size: 14px;
+    min-width: 90px;
+    font-size: 12px;
     background-color: var(--color-nasa-red);
 }
+
 
 .menu a:hover {
     background-color: var(--color-nasa-gray);
@@ -106,40 +123,50 @@ header {
     color: var(--color-nasa-black);
 }
 
+
 header h1 {
-    margin-top: 10px;
-    margin-bottom: 5px;
-    font-size: 28px;
+    margin-top: 6px;
+    margin-bottom: 3px;
+    font-size: 18px;
     color: var(--color-nasa-white);
     text-align: center;
     position: relative;
+    line-height: 1.2;
 }
+
 
 header h3 {
     margin-top: 0;
-    margin-bottom: 15px;
+    margin-bottom: 8px;
     color: var(--color-nasa-gray);
     font-weight: var(--font-weight-regular);
-    font-size: 16px;
+    font-size: 12px;
     text-align: center;
     position: relative;
+    line-height: 1.2;
 }
 
+
 /* ====================================================================== BOTONES LOG IN/SIGN OUT ======================================================================*/
+
 
 #sign-out {
     color: var(--color-nasa-white);
     text-decoration: none;
-    padding: 12px 20px;
+    padding: 8px 12px;
     border-radius: 5px;
     transition: all 0.5s ease;
     font-weight: var(--font-weight-semi-bold);
     display: block;
     text-align: center;
-    min-width: 120px;
-    font-size: 14px;
+    min-width: 90px;
+    font-size: 12px;
     background-color: var(--color-nasa-red);
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-primary);
 }
+
 
 #sign-out:hover {
     background-color: var(--color-nasa-gray);
@@ -148,64 +175,73 @@ header h3 {
     color: var(--color-nasa-black);
 }
 
+
 .hidden {
     display: none;
 }
+
 
 .visible {
     display: block;
 }
 
+
 /* ====================================================================== FORMULARIOS LOGIN Y SIGNIN ======================================================================*/
+
 
 #formularios {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    padding: 20px 15px;
-    margin: 20px auto;
+    gap: 15px;
+    padding: 15px 12px;
+    margin: 15px auto;
     max-width: 100%;
     width: 100%;
 }
 
+
 #log-in, #sign-up {
     background: var(--color-nasa-white);
-    padding: 20px;
+    padding: 15px;
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     width: 100%;
     border: 2px solid var(--color-nasa-gray-light);
 }
 
+
 #formularios h2 {
     color: var(--color-nasa-dark);
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     font-weight: var(--font-weight-bold);
-    font-size: 20px;
+    font-size: 16px;
     border-bottom: 2px solid var(--color-nasa-dark);
-    padding-bottom: 8px;
+    padding-bottom: 6px;
 }
+
 
 #formularios form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 12px;
 }
+
 
 #formularios label {
     font-weight: var(--font-weight-semi-bold);
     color: var(--color-nasa-dark);
-    font-size: 14px;
-    margin-bottom: -12px;
+    font-size: 12px;
+    margin-bottom: -8px;
 }
+
 
 #formularios input[type="email"],
 #formularios input[type="password"] {
-    padding: 12px;
+    padding: 10px;
     border: 2px solid var(--color-nasa-gray);
     border-radius: 6px;
-    font-size: 14px;
+    font-size: 12px;
     transition: all 0.3s ease;
     background-color: var(--color-nasa-white);
     color: var(--color-nasa-dark-text);
@@ -213,6 +249,7 @@ header h3 {
     width: 100%;
     box-sizing: border-box;
 }
+
 
 #formularios input[type="email"]:focus,
 #formularios input[type="password"]:focus {
@@ -223,25 +260,28 @@ header h3 {
     transform: translateY(-1px);
 }
 
+
 #formularios input[type="email"]:hover,
 #formularios input[type="password"]:hover {
     border-color: var(--color-nasa-light);
 }
 
+
 #formularios input[type="submit"] {
     background-color: var(--color-nasa-medium);
     color: var(--color-nasa-white);
     border: none;
-    padding: 12px 20px;
+    padding: 10px 15px;
     border-radius: 6px;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: var(--font-weight-semi-bold);
     cursor: pointer;
     transition: all 0.3s ease;
-    margin-top: 8px;
+    margin-top: 6px;
     font-family: var(--font-primary);
     width: 100%;
 }
+
 
 #formularios input[type="submit"]:hover {
     background-color: var(--color-nasa-dark);
@@ -249,114 +289,83 @@ header h3 {
     box-shadow: 0 3px 10px var(--color-nasa-dark);
 }
 
+
 #formularios input[type="submit"]:focus {
     outline-offset: 2px;
     background-color: var(--color-nasa-dark);
 }
+
 
 #formularios input[type="submit"]:active {
     transform: translateY(0);
     box-shadow: 0 1px 5px var(--color-nasa-dark);
 }
 
-/* ====================================================================== BOTONES BORRAR TODO ======================================================================*/
 
-#cleanAll1, 
+/* ====================================================================== BOTONES BORRAR TODO  ======================================================================*/
+
+
+#cleanAll1,
 #cleanAll2 {
     background-color: var(--color-nasa-red);
     color: var(--color-nasa-white);
     border: none;
-    padding: 12px 20px;
+    padding: 10px 15px;
     border-radius: 6px;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: var(--font-weight-semi-bold);
     cursor: pointer;
     transition: all 0.3s ease;
-    margin-top: 12px;
+    margin-top: 8px;
     font-family: var(--font-primary);
     width: 100%;
     display: block;
 }
 
-#cleanAll1:hover, 
+
+#cleanAll1:hover,
 #cleanAll2:hover {
     background-color: #c0392b;
     transform: translateY(-2px);
     box-shadow: 0 3px 10px rgba(231, 76, 60, 0.4);
 }
 
-#cleanAll1:focus, 
+
+#cleanAll1:focus,
 #cleanAll2:focus {
     outline-offset: 2px;
     background-color: #c0392b;
 }
 
-#cleanAll1:active, 
+
+#cleanAll1:active,
 #cleanAll2:active {
     transform: translateY(0);
     box-shadow: 0 1px 5px rgba(231, 76, 60, 0.4);
 }
 
-/* ====================================================================== BOTONES MAPA - CENTRADOS ======================================================================*/
-
-#earthquakes-buttons {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    margin: 20px auto;
-    padding: 0 15px;
-    max-width: 100%;
-    width: 100%;
-}
-
-#show-all-earthquakes, 
-#show-favorites {
-    background-color: var(--color-nasa-medium);
-    color: var(--color-nasa-white);
-    border: none;
-    padding: 12px 20px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: var(--font-weight-semi-bold);
-    cursor: pointer;
-    transition: all 0.4s ease;
-    font-family: var(--font-primary);
-    width: 100%;
-    max-width: 280px;
-    text-align: center;
-}
-
-#show-all-earthquakes:hover, 
-#show-favorites:hover {
-    background-color: var(--color-nasa-dark);
-    transform: translateY(-2px);
-    box-shadow: 0 3px 10px rgba(11, 61, 145, 0.4);
-}
-
-#show-all-earthquakes:active, 
-#show-favorites:active {
-    transform: translateY(0);
-}
 
 /* ====================================================================== LEYENDA ======================================================================*/
 
+
 #leyenda {
-    margin: 15px auto;
-    max-width: 90%;
+    margin: 12px auto;
+    max-width: 95%;
     background: white;
-    padding: 15px;
+    padding: 12px;
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
+
 #leyenda h2 {
     text-align: center;
     font-weight: bold;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     color: var(--color-nasa-dark-text);
-    font-size: 18px;
+    font-size: 14px;
 }
+
 
 .lista-niveles {
     list-style-type: none;
@@ -364,22 +373,25 @@ header h3 {
     margin: 0;
 }
 
+
 .lista-niveles li {
     display: flex;
     align-items: center;
-    padding: 6px 8px;
-    margin-bottom: 4px;
+    padding: 4px 6px;
+    margin-bottom: 3px;
     border-radius: 4px;
     background-color: var(--color-nasa-white);
-    font-size: 14px;
+    font-size: 11px;
 }
 
+
 .color-indicador {
-    width: 14px;
-    height: 14px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
-    margin-right: 10px;
+    margin-right: 8px;
 }
+
 
 .nivel-0 .color-indicador { background-color: var(--color-alert-0); }
 .nivel-1 .color-indicador { background-color: var(--color-alert-1); }
@@ -390,86 +402,149 @@ header h3 {
 .nivel-6 .color-indicador { background-color: var(--color-alert-6); }
 .nivel-7 .color-indicador { background-color: var(--color-alert-7); }
 
+
 /* ====================================================================== MAPAS ======================================================================*/
 
+
 #mapas {
-    padding: 15px;
+    padding: 12px;
     margin-top: 0;
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    gap: 15px;
+    gap: 20px;
+    min-height: 650px;
 }
+
 
 #mapas h2 {
     color: var(--color-nasa-dark);
-    font-size: 22px;
-    margin-bottom: 15px;
+    font-size: 16px;
+    margin-bottom: 12px;
     text-align: center;
 }
 
+
 .contenedor-mapa {
-    height: 400px;
+    height: 500px;
     width: 100%;
     max-width: 100%;
-    margin-bottom: 15px;
+    margin-bottom: 0;
     background: var(--color-nasa-white);
-    padding: 15px;
+    padding: 12px;
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
 }
+
 
 #mapa1, #mapa2 {
     height: 300px;
     width: 100%;
+    flex: 1;
+    min-height: 300px;
 }
+
 
 #mapa2 {
     height: 250px;
-    margin-top: 10px;
+    margin-top: 0;
+    min-height: 250px;
 }
+
+
+/* ====================================================================== BOTONES MAPA ======================================================================*/
+
+#earthquakes-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin: 15px auto;
+    padding: 0 12px;
+    max-width: 100%;
+    width: 100%;
+}
+
+
+#show-all-earthquakes,
+#show-favorites {
+    background-color: var(--color-nasa-medium);
+    color: var(--color-nasa-white);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: var(--font-weight-semi-bold);
+    cursor: pointer;
+    transition: all 0.4s ease;
+    font-family: var(--font-primary);
+    width: 100%;
+    max-width: 220px;
+    text-align: center;
+}
+
+
+#show-all-earthquakes:hover,
+#show-favorites:hover {
+    background-color: var(--color-nasa-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(11, 61, 145, 0.4);
+}
+
+
+#show-all-earthquakes:active,
+#show-favorites:active {
+    transform: translateY(0);
+}
+
 
 /* ====================================================================== FORMULARIO FILTROS ======================================================================*/
 
+
 #filtros {
     background: var(--color-nasa-white);
-    padding: 20px;
+    padding: 15px;
     border-radius: 8px;
-    margin: 15px auto;
+    margin: 12px auto;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 12px;
     align-items: center;
     justify-content: center;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
     border: 2px solid var(--color-nasa-gray-light);
-    max-width: 90%;
+    max-width: 95%;
     width: 100%;
 }
+
 
 #filtros label {
     font-weight: var(--font-weight-semi-bold);
     color: var(--color-nasa-dark);
-    font-size: 14px;
+    font-size: 12px;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 4px;
     width: 100%;
 }
 
+
 #filtros input, #filtros select {
-    padding: 10px 12px;
+    padding: 8px 10px;
     border: 2px solid var(--color-nasa-gray);
     border-radius: 8px;
-    font-size: 14px;
+    font-size: 12px;
     transition: all 0.4s ease;
     background-color: var(--color-nasa-white);
     color: var(--color-nasa-dark-text);
     font-family: var(--font-primary);
     width: 100%;
 }
+
 
 #filtros input:focus, #filtros select:focus {
     border-color: var(--color-nasa-medium);
@@ -478,30 +553,34 @@ header h3 {
     background-color: var(--color-nasa-gray-light);
 }
 
+
 #filtros input:hover, #filtros select:hover {
     border-color: var(--color-nasa-light);
 }
 
+
 #filtro-magnitud option {
     background-color: var(--color-nasa-white);
     color: var(--color-nasa-dark-text);
-    padding: 8px;
+    padding: 6px;
 }
+
 
 #aplicarFiltro {
     background-color: var(--color-nasa-medium);
     color: var(--color-nasa-white);
     border: none;
-    padding: 12px 20px;
+    padding: 10px 15px;
     border-radius: 8px;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: var(--font-weight-semi-bold);
     cursor: pointer;
     transition: all 0.4s ease;
-    margin-top: 8px;
+    margin-top: 6px;
     font-family: var(--font-primary);
     width: 100%;
 }
+
 
 #aplicarFiltro:hover {
     background-color: var(--color-nasa-dark);
@@ -509,223 +588,413 @@ header h3 {
     box-shadow: 0 3px 10px rgba(11, 61, 145, 0.4);
 }
 
+
 #aplicarFiltro:active {
     transform: translateY(0);
 }
 
+
 /* ====================================================================== FOOTER ======================================================================*/
+
 
 footer {
     background-color: var(--color-nasa-black);
     color: var(--color-nasa-white);
-    padding: 12px 0;
+    padding: 10px 12px;
     margin: 0;
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: auto;
-    gap: 8px;
+    gap: 6px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
 }
 
 footer p {
-    margin: 0 15px;
+    margin: 0;
     text-align: center;
-    font-size: 14px;
+    font-size: 11px;
     flex: 1;
 }
+
+
+/* ====================================================================== ESTILOS PARA POPUPS Y BOTONES DE MAPAS ======================================================================*/
+
+
+.earthquake-popup {
+    max-width: 300px;
+}
+
+
+.earthquake-popup h3 {
+    color: var(--color-nasa-dark);
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+
+.earthquake-popup p {
+    margin: 4px 0;
+    font-size: 12px;
+}
+
+
+.earthquake-popup a {
+    color: var(--color-nasa-medium);
+    text-decoration: none;
+    font-weight: var(--font-weight-semi-bold);
+    display: inline-block;
+    margin: 8px 0;
+}
+
+
+.earthquake-popup a:hover {
+    text-decoration: underline;
+}
+
+
+.add-favorite-btn,
+.remove-favorite-btn {
+    background-color: var(--color-nasa-red);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: var(--font-weight-semi-bold);
+    margin-top: 8px;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+
+.add-favorite-btn:hover {
+    background-color: #c0392b;
+    transform: translateY(-1px);
+}
+
+
+.remove-favorite-btn {
+    background-color: var(--color-nasa-gray);
+}
+
+
+.remove-favorite-btn:hover {
+    background-color: #5a6268;
+    transform: translateY(-1px);
+}
+
 
 /* ====================================================================== MEDIA QUERIES ======================================================================*/
 
 /* Tablet (768px en adelante) */
+
 @media (min-width: 768px) {
     body {
-        padding-top: 200px;
+        padding-top: 160px;
     }
+
 
     header {
-        height: 180px;
+        height: 140px;
+        padding: 10px 15px;
     }
+
 
     header h1 {
-        font-size: 36px;
+        font-size: 24px;
+        margin-top: 8px;
+        margin-bottom: 4px;
     }
+
 
     header h3 {
-        font-size: 18px;
+        font-size: 14px;
+        margin-bottom: 10px;
     }
+
 
     .menu {
-        gap: 15px;
+        gap: 8px;
     }
 
+
     .menu a {
-        padding: 15px 25px;
-        min-width: 140px;
-        font-size: 16px;
+        padding: 10px 15px;
+        min-width: 110px;
+        font-size: 13px;
     }
+
+
+    #sign-out {
+        padding: 10px 15px;
+        min-width: 110px;
+        font-size: 13px;
+    }
+
 
     #formularios {
         flex-direction: row;
-        padding: 25px 20px;
-        max-width: 800px;
+        padding: 20px 15px;
+        max-width: 700px;
+        gap: 20px;
     }
 
+
     #log-in, #sign-up {
-        padding: 25px;
+        padding: 20px;
         border-radius: 10px;
     }
 
+
     #formularios h2 {
-        font-size: 22px;
+        font-size: 18px;
     }
+
+
+    #formularios label,
+    #formularios input[type="email"],
+    #formularios input[type="password"],
+    #formularios input[type="submit"] {
+        font-size: 13px;
+    }
+
 
     #earthquakes-buttons {
         flex-direction: row;
         justify-content: center;
-        max-width: 600px;
+        max-width: 500px;
+        gap: 15px;
     }
 
-    #show-all-earthquakes, 
+
+    #show-all-earthquakes,
     #show-favorites {
         width: auto;
-        min-width: 180px;
+        min-width: 160px;
+        font-size: 13px;
+        padding: 12px 18px;
     }
 
-    .contenedor-mapa {
-        height: 500px;
-        max-width: 90%;
-    }
-
-    #mapa1, #mapa2 {
-        height: 350px;
-    }
-
-    #filtros {
-        flex-direction: row;
-        flex-wrap: wrap;
-        max-width: 700px;
-        padding: 20px;
-    }
-
-    #filtros label {
-        width: auto;
-        flex: 1;
-        min-width: 150px;
-    }
-
-    #aplicarFiltro {
-        width: auto;
-        min-width: 150px;
-    }
-
-    footer {
-        flex-direction: row;
-        padding: 15px 0;
-    }
-}
-
-/* Desktop (1024px en adelante) */
-@media (min-width: 1024px) {
-    body {
-        padding-top: 250px;
-    }
-
-    header {
-        height: 200px;
-    }
-
-    header h1 {
-        font-size: 45px;
-    }
-
-    header h3 {
-        font-size: 20px;
-    }
-
-    .menu {
-        gap: 20px;
-    }
-
-    .menu a {
-        padding: 15px 25px;
-        min-width: 140px;
-        font-size: 16px;
-    }
-
-    #formularios {
-        max-width: 1000px;
-        gap: 30px;
-        padding: 30px 20px;
-    }
-
-    #log-in, #sign-up {
-        padding: 30px;
-        max-width: 400px;
-    }
-
-    #formularios h2 {
-        font-size: 24px;
-    }
-
-    #earthquakes-buttons {
-        max-width: 800px;
-        gap: 20px;
-    }
-
-    #show-all-earthquakes, 
-    #show-favorites {
-        padding: 14px 25px;
-        font-size: 15px;
-        min-width: 200px;
-    }
 
     .contenedor-mapa {
         height: 600px;
-        width: 800px;
-        max-width: 800px;
-        padding: 20px;
+        max-width: 95%;
+        padding: 15px;
     }
+
 
     #mapa1, #mapa2 {
         height: 400px;
-        width: 800px;
     }
+
 
     #mapa2 {
         height: 300px;
     }
 
+
+    #mapas {
+        gap: 25px;
+        min-height: 800px;
+    }
+
+
     #filtros {
-        max-width: 800px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        max-width: 600px;
+        padding: 18px;
+        gap: 15px;
+    }
+
+
+    #filtros label {
+        width: auto;
+        flex: 1;
+        min-width: 130px;
+    }
+
+
+    #aplicarFiltro {
+        width: auto;
+        min-width: 130px;
+    }
+
+
+    #leyenda {
+        max-width: 400px;
+        padding: 15px;
+    }
+
+
+    #leyenda h2 {
+        font-size: 16px;
+    }
+
+
+    .lista-niveles li {
+        font-size: 12px;
+        padding: 6px 8px;
+    }
+
+
+    footer {
+        flex-direction: row;
+        padding: 12px 15px;
+    }
+
+
+    footer p {
+        font-size: 13px;
+    }
+}
+
+
+/* Desktop (1024px en adelante) */
+
+@media (min-width: 1024px) {
+    body {
+        padding-top: 180px;
+    }
+
+
+    header {
+        height: 160px;
+        padding: 12px 20px;
+    }
+
+
+    header h1 {
+        font-size: 32px;
+    }
+
+
+    header h3 {
+        font-size: 16px;
+    }
+
+
+    .menu {
+        gap: 12px;
+    }
+
+
+    .menu a {
+        padding: 12px 20px;
+        min-width: 130px;
+        font-size: 14px;
+    }
+
+
+    #sign-out {
+        padding: 12px 20px;
+        min-width: 130px;
+        font-size: 14px;
+    }
+
+
+    #formularios {
+        max-width: 900px;
+        gap: 30px;
+        padding: 25px 20px;
+    }
+
+
+    #log-in, #sign-up {
         padding: 25px;
+        max-width: 400px;
+    }
+
+
+    #formularios h2 {
+        font-size: 20px;
+    }
+
+
+    #formularios label,
+    #formularios input[type="email"],
+    #formularios input[type="password"],
+    #formularios input[type="submit"] {
+        font-size: 14px;
+    }
+
+
+    #earthquakes-buttons {
+        max-width: 700px;
         gap: 20px;
     }
 
-    #leyenda {
-        max-width: 500px;
+
+    #show-all-earthquakes,
+    #show-favorites {
+        padding: 14px 22px;
+        font-size: 14px;
+        min-width: 180px;
+    }
+
+
+    .contenedor-mapa {
+        height: 700px;
+        width: 800px;
+        max-width: 800px;
         padding: 20px;
     }
 
-    .lista-niveles li {
-        font-size: 16px;
-        padding: 8px 10px;
-    }
-
-    footer p {
-        font-size: 16px;
-    }
-}
-
-/* Pantallas grandes (1200px en adelante) */
-@media (min-width: 1200px) {
-    .contenedor-mapa {
-        width: 900px;
-        max-width: 900px;
-    }
 
     #mapa1, #mapa2 {
-        width: 900px;
+        height: 500px;
+        width: 800px;
+    }
+
+
+    #mapa2 {
+        height: 350px;
+    }
+
+
+    #mapas {
+        gap: 30px;
+        min-height: 900px;
+    }
+
+
+    #filtros {
+        max-width: 700px;
+        padding: 22px;
+        gap: 18px;
+    }
+
+
+    #leyenda {
+        max-width: 450px;
+        padding: 18px;
+    }
+
+
+    #leyenda h2 {
+        font-size: 18px;
+    }
+
+
+    .lista-niveles li {
+        font-size: 14px;
+        padding: 7px 9px;
+    }
+
+
+    footer {
+        padding: 15px 20px;
+    }
+
+
+    footer p {
+        font-size: 14px;
     }
 }
+
