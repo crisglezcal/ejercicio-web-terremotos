@@ -2,7 +2,7 @@
 
 ## 📋 Descripción del proyecto
 
-![Diseño responsive](./assets/responsive.png.png)
+![Diseño responsive](./assets/responsive.png)
 
 Este proyecto es una dashboard interactiva de actividad sísmica que muestra datos de terremotos en tiempo real, interactuando con una API de terremotos. Integra la librería de mapas de Leaflet y sistema de usuarios con Firebase Authentication y gestión de favoritos con Firestore.
 
